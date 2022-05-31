@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import getAsk from '../services/getAsk';
-import Header from '../component/Header';
 import { updateScore } from '../redux/actions';
 
 class Game extends React.Component {
@@ -187,9 +186,13 @@ class Game extends React.Component {
       correctAnswersIndex,
       disabledQuestion,
     } = this.state;
+    const { name, score } = this.props;
     return (
       <div id="game">
-        <Header />
+        <header>
+          <p>{`Player: ${name}`}</p>
+          <p>{`Score: ${score}`}</p>
+        </header>
         <p class="timer">{ timer }</p>
         { correctAnswersIndex.length !== 0 && (
           <div>

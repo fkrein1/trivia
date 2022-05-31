@@ -15,7 +15,7 @@ body {
 }
 
 .App-logo {
-  width: 50vmin;
+  width: 40vmin;
   margin-top: 3rem;
   cursor: pointer;
 }
@@ -38,9 +38,14 @@ body {
     font-weight: 400;
     line-height: 30px;
     height: 35px;
-    border: none;
-    
+    border: none; 
+    outline: none;
   }
+
+  input:focus , select:focus {
+    outline: none;
+  }
+
   button {
     background: #FF2261;
     cursor: pointer;
@@ -54,19 +59,6 @@ body {
   }
 }
 
-// ================ HEADER ================
-
-#header {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  p {
-    margin: 0;
-    font-size: 18px;
-  }
-}
-
-
 // ================ GAME PAGE ================
 
 #game {
@@ -74,10 +66,22 @@ body {
   flex-direction: column;
   margin: auto;
   gap: 8px;
+  margin-top: 5px;
   width: 70vmin;
-  margin-top: 20px;
   align-items: center;
   flex: auto;
+
+  header { 
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    margin: 5px 0;
+    justify-content: center;
+
+    p {
+      margin: 0;
+    }
+  }
 
   .question {
     background-color: #393A3E;
@@ -90,9 +94,8 @@ body {
     border-radius: 50%;
     padding: 20px;
     margin: auto; 
-    margin-top: 10px;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
