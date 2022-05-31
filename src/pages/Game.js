@@ -190,7 +190,6 @@ class Game extends React.Component {
     return (
       <div id="game">
         <header>
-          <p>{`Player: ${name}`}</p>
           <p>{`Score: ${score}`}</p>
         </header>
         <p class="timer">{ timer }</p>
