@@ -8,7 +8,7 @@ describe('Tests Login Page:', () => {
   it('renders all correct inputs and submit buttons', () => {
     renderWithRouterAndRedux(<App />);
     const playBtn = screen.getByRole('button', { name: /play/i });
-    const nameInput = screen.getByPlaceholderText('Name');
+    const nameInput = screen.getByPlaceholderText(/insert your name/i);
     expect(playBtn).toBeInTheDocument();
     expect(nameInput).toBeInTheDocument();
   });
@@ -22,7 +22,7 @@ describe('Tests Login Page:', () => {
   it('enables button after complete input fields', () => {
     renderWithRouterAndRedux(<App />);
     const playBtn = screen.getByRole('button', { name: /play/i });
-    const nameInput = screen.getByPlaceholderText('Name');
+    const nameInput = screen.getByPlaceholderText(/insert your name/i);
     userEvent.type(nameInput, 'Rafael');
     expect(playBtn).toBeEnabled();
   });
@@ -30,11 +30,11 @@ describe('Tests Login Page:', () => {
   it('play button redirects to /game', async () => {
     const { history, debug } = renderWithRouterAndRedux(<App />);
     const playBtn = screen.getByRole('button', { name: /play/i });
-    const nameInput = screen.getByPlaceholderText('Name');
+    const nameInput = screen.getByPlaceholderText(/insert your name/i);
     userEvent.type(nameInput, 'Rafael');
     userEvent.click(playBtn);
-    const playerName = await screen.findByText(/Player: Rafael/i)
-    expect(playerName).toBeInTheDocument();
+    const score = await screen.findByText(/score: 0/i)
+    expect(score).toBeInTheDocument();
     expect(history.location.pathname).toBe('/game');
   });
 });

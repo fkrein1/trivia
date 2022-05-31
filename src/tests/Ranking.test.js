@@ -14,9 +14,9 @@ describe('Tests Ranking page:', () => {
     localStorage.setItem('ranking', JSON.stringify(previousRanking));
     renderWithRouterAndRedux(<App />, {} , '/ranking');
     previousRanking.forEach((player) => {
-      const playerName = screen.getByText(`Name: ${player.name}`);
+      const playerName = screen.getByText(player.name);
       expect(playerName).toBeInTheDocument();
-      const playerScore = screen.getByText(`Score: ${player.score}`);
+      const playerScore = screen.getByText(player.score);
       expect(playerScore).toBeInTheDocument();
     });
   });
