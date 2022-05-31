@@ -44,9 +44,9 @@ class Login extends React.Component {
   render() {
     const { name } = this.state;
     return (
-      <form>
+      <form id="login">
         <input
-          placeholder="Name"
+          placeholder="Insert your name"
           type="text"
           name="name"
           value={ name }
@@ -78,7 +78,7 @@ class Login extends React.Component {
           disabled={ this.loginBtnEnabled() }
           onClick={ this.loginBtnClick }
         >
-          Play
+          PLAY
         </button>
       </form>
     );

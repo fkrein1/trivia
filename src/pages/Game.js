@@ -143,8 +143,8 @@ class Game extends React.Component {
   }
 
   rankingSetup = () => {
-    const { name, score, assertions } = this.props;
-    const playerResult = { name, score, assertions };
+    const { name, score } = this.props;
+    const playerResult = { name, score };
 
     if (localStorage.getItem('ranking') === null) {
       localStorage.setItem('ranking', JSON.stringify([playerResult]));
@@ -188,23 +188,25 @@ class Game extends React.Component {
       disabledQuestion,
     } = this.state;
     return (
-      <div>
+      <div id="game">
         <Header />
-        <p>{ timer }</p>
+        <p class="timer">{ timer }</p>
         { correctAnswersIndex.length !== 0 && (
           <div>
-            <p>{ this.decodeHTMLEntities(trivia[currentQuestion].question) }</p>
-            <div>{ this.renderAnswers()}</div>
+            <p class="question">{ this.decodeHTMLEntities(trivia[currentQuestion].question) }</p>
+            <div class="answers">{ this.renderAnswers()}</div>
+            { disabledQuestion && (
+              <button
+                id="next"
+                type="button"
+                onClick={ this.nextClick }
+              >
+                Next
+              </button>
+            )}
           </div>
         ) }
-        { disabledQuestion && (
-          <button
-            type="button"
-            onClick={ this.nextClick }
-          >
-            Next
-          </button>
-        )}
+
       </div>
     );
   }

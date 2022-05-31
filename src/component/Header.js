@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     const { name, score } = this.props;
     return (
-      <div>
+      <div id="header">
         <p>{`Player: ${name}`}</p>
         <p>{`Score: ${score}`}</p>
       </div>

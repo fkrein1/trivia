@@ -22,14 +22,14 @@ class Ranking extends React.Component {
   render() {
     const { ranking } = this.state;
     return (
-      <div>
+      <div id="ranking">
         <h1>Ranking</h1>
-        <div />
-        <div>
+        <div >
           {ranking.map(({ name, score }, index) => (
-            <div key={ index + 1 }>
-              <p>{ `Name: ${name}` }</p>
-              <p>{ `Score: ${score}` }</p>
+            <div class="ranking-list" key={ index + 1 }>
+              <p>{`#${ index + 1 }`}</p>
+              <p>{ name }</p>
+              <p>{ score }</p>
             </div>
           ))}
         </div>

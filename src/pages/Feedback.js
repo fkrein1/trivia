@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../component/Header';
 
 class Feedback extends React.Component {
   showMessage = () => {
@@ -16,8 +15,7 @@ class Feedback extends React.Component {
   render() {
     const { history } = this.props;
     return (
-      <div>
-        <Header />
+      <div id="feedback">
         <p>{this.showMessage()}</p>
         <button
           type="button"

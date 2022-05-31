@@ -1,7 +1,13 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background: #282828;
+  color: #fff;
 }
 
 .App {
@@ -10,16 +16,193 @@ body {
 
 .App-logo {
   width: 50vmin;
-  pointer-events: none;
-  margin-top: 5rem;
+  margin-top: 3rem;
+  cursor: pointer;
 }
 
-.correct-btn {
-  background: rgb(11, 142, 15);
-  color: white;
+// ================ LOGIN PAGE ================
+
+#login {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 8px;
+  width: 70vmin;
+  margin-top: 60px;
+  font-size: 50px;
+
+  input, select, button {
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    height: 35px;
+    border: none;
+    
+  }
+  button {
+    background: #FF2261;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+  }
+
+  button:disabled {
+    background-color: #939191;
+    cursor: not-allowed;
+  }
 }
 
-.incorrect-btn {
-  background: rgb(155, 14, 14);
-  color: white;
+// ================ HEADER ================
+
+#header {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  p {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+
+// ================ GAME PAGE ================
+
+#game {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 8px;
+  width: 70vmin;
+  margin-top: 20px;
+  align-items: center;
+  flex: auto;
+
+  .question {
+    background-color: #393A3E;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .timer { 
+    background-color: #393A3E;
+    border-radius: 50%;
+    padding: 20px;
+    margin: auto; 
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .answers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    flex: auto;
+
+    .correct-btn {
+      background: #3baa08;
+      cursor: not-allowed;
+
+    }
+    
+    .incorrect-btn {
+      background: #FF2261;
+      cursor: not-allowed;
+
+    }
+
+    button {
+      background-color: #393A3E;
+      width: 49%;
+      border-radius: 5px;
+      padding: 10px 20px;
+      color: white;
+      border: none;
+      flex: auto;
+      cursor: pointer;
+    }
+  }
+
+  #next { 
+    width: 100%;
+    margin-top: 10px;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    height: 35px;
+    border: none;
+    background: #393A3E;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+
+  }
+}
+
+// ================ FEEDBACK PAGE ================
+
+#feedback {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 15px;
+  width: 70vmin;
+  margin-top: 20px;
+  align-items: center;
+
+  p {
+    font-size: 36px;
+  }
+  button {
+      width: 80%;
+      padding: 0 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 30px;
+      height: 50px;
+      border: none;
+      background: #FF2261;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+
+    }
+  
+}
+
+// ================ RANKING PAGE ================
+
+#ranking {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 70vmin;
+  margin-top: 20px;
+
+  .ranking-list {
+    display: flex;
+    background-color: #393A3E;
+    flex-direction: row;
+    gap: 10px;
+    width: 70vmin;
+    margin-top: 10px;
+    justify-content: center;
+
+    p {
+      width: 30%;
+    }
+  }
 }
