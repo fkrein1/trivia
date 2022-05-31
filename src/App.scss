@@ -53,6 +53,10 @@ body {
     font-weight: 700;
   }
 
+  button:hover:enabled {
+    background: #dd2257;
+  } 
+
   button:disabled {
     background-color: #939191;
     cursor: not-allowed;
@@ -127,12 +131,17 @@ body {
     button {
       background-color: #393A3E;
       width: 49%;
+      font-size: 14px;
       border-radius: 5px;
       padding: 10px 20px;
       color: white;
       border: none;
       flex: auto;
       cursor: pointer;
+    }
+
+    button:hover:enabled{
+      background-color: #44454a;
     }
   }
 
@@ -150,6 +159,10 @@ body {
     color: white;
     font-weight: 700;
     cursor: pointer;
+  }
+
+  #next:hover {
+    background-color: #44454a;
 
   }
 }
@@ -181,8 +194,11 @@ body {
       color: white;
       font-weight: 700;
       cursor: pointer;
-
     }
+  button:hover {
+    background: #dd2257;
+
+  }
   
 }
 
