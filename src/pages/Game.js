@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import getAsk from '../services/getAsk';
 import Header from '../component/Header';
 import { updateScore } from '../redux/actions';
-import '../App.css';
 
 class Game extends React.Component {
   constructor() {
@@ -16,9 +14,7 @@ class Game extends React.Component {
       timer: 30,
       correctAnswersIndex: [],
       allAnswers: [],
-      score: 0,
       setIntervalId: 0,
-      quantifyAnswer: 0,
     };
   }
 
@@ -32,10 +28,10 @@ class Game extends React.Component {
   }
 
   getTrivia = async () => {
-    const { history } = this.props;
+    const { history, difficulty, category } = this.props;
     const token = localStorage.getItem('token');
     if (token === null) return history.push('/');
-    const API_ASK = await getAsk(token);
+    const API_ASK = await getAsk(token, difficulty, category);
     const tokenInvalid = 3;
     if (API_ASK.response_code === tokenInvalid) {
       localStorage.removeItem('token');
@@ -105,7 +101,7 @@ class Game extends React.Component {
             onClick={ this.answerClick }
             disabled={ disabledQuestion }
           >
-            { answer }
+            { this.decodeHTMLEntities(answer) }
           </button>
         ))
     );
@@ -135,30 +131,52 @@ class Game extends React.Component {
 
   calculateScore = ({ dataset: { testid } }) => {
     if (testid !== 'correct-answer') return;
-    const { trivia, currentQuestion, timer, score, quantifyAnswer } = this.state;
+    const { trivia, currentQuestion, timer } = this.state;
+    const { score, assertions, dispatch } = this.props;
     const question = trivia[currentQuestion];
     const difficulty = ['easy', 'medium', 'hard'];
     const difficultyMultiplier = difficulty.indexOf(question.difficulty) + 1;
     const basePoints = 10;
     const newScore = score + basePoints + (timer * difficultyMultiplier);
-    const assertions = quantifyAnswer + 1;
-    const { dispatch } = this.props;
-    this.setState({ score: newScore, quantifyAnswer: assertions }, () => dispatch(
-      updateScore(newScore, assertions),
-    ));
+    const newAssertions = assertions + 1;
+    dispatch(updateScore(newScore, newAssertions));
   }
+
+  rankingSetup = () => {
+    const { name, score, assertions } = this.props;
+    const playerResult = { name, score, assertions };
+
+    if (localStorage.getItem('ranking') === null) {
+      localStorage.setItem('ranking', JSON.stringify([playerResult]));
+    } else {  
+      const currentRanking = JSON.parse(localStorage.getItem('ranking'));
+      const newRanking = [...currentRanking, playerResult];
+      localStorage.setItem('ranking', JSON.stringify(newRanking));
+      }
+    }
 
   nextClick = () => {
     const { currentQuestion } = this.state;
     const { history } = this.props;
     const finalQuestion = 4;
-    if (currentQuestion === finalQuestion) return history.push('/feedback');
-    this.setState((prevState) => ({
-      currentQuestion: prevState.currentQuestion + 1,
-      disabledQuestion: false,
-      timer: 30,
-    }));
-    this.setTimer();
+    if (currentQuestion === finalQuestion) {
+      this.rankingSetup();
+      history.push('/feedback');
+    }
+    else {
+      this.setState((prevState) => ({
+        currentQuestion: prevState.currentQuestion + 1,
+        disabledQuestion: false,
+        timer: 30,
+      }));
+      this.setTimer();
+    }
+  }
+
+   decodeHTMLEntities = (text) => {
+    var textArea = document.createElement('textarea');
+    textArea.innerHTML = text;
+    return textArea.value;
   }
 
   render() {
@@ -175,19 +193,13 @@ class Game extends React.Component {
         <p>{ timer }</p>
         { correctAnswersIndex.length !== 0 && (
           <div>
-            <p data-testid="question-text">{ trivia[currentQuestion].question }</p>
-            <p data-testid="question-category">
-              {trivia[currentQuestion].category}
-            </p>
-            <div data-testid="answer-options">
-              { this.renderAnswers() }
-            </div>
+            <p>{ this.decodeHTMLEntities(trivia[currentQuestion].question) }</p>
+            <div>{ this.renderAnswers()}</div>
           </div>
         ) }
         { disabledQuestion && (
           <button
             type="button"
-            data-testid="btn-next"
             onClick={ this.nextClick }
           >
             Next
@@ -198,11 +210,12 @@ class Game extends React.Component {
   }
 }
 
-export default connect()(Game);
+const mapStateToProps = (state) => ({
+  name: state.player.name,
+  assertions: state.player.assertions,
+  score: state.player.score,
+  difficulty: state.player.difficulty,
+  category: state.player.category,
+});
 
-Game.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+export default connect(mapStateToProps)(Game);

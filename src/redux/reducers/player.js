@@ -2,7 +2,8 @@ const INITIAL_STATE = {
   name: '',
   assertions: 0,
   score: 0,
-  gravatarEmail: '',
+  difficulty: 'any',
+  category: 'any',
 };
 
 const playerReducer = (state = INITIAL_STATE, action) => {

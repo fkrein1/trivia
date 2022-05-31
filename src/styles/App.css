@@ -1,0 +1,25 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  width: 50vmin;
+  pointer-events: none;
+  margin-top: 5rem;
+}
+
+.correct-btn {
+  background: rgb(11, 142, 15);
+  color: white;
+}
+
+.incorrect-btn {
+  background: rgb(155, 14, 14);
+  color: white;
+}
