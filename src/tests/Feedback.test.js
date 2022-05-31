@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App'
 
-describe('1) Tests Feedback Page:', () => {
+describe('Tests Feedback Page:', () => {
   const INITIAL_STATE = {
     player: {
       name: 'rafael',

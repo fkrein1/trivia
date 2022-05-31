@@ -14,7 +14,7 @@ const INITIAL_STATE = { player: {
 
 afterEach(() => jest.clearAllMocks());
 
-describe('1) Tests Game Page:', () => {
+describe('Tests Game Page:', () => {
   it('renders all correct buttons, question and answers', async () => {
     localStorage.setItem('token', 'correctToken')
     jest.spyOn(global, 'fetch').mockResolvedValue({
@@ -110,8 +110,8 @@ describe('1) Tests Game Page:', () => {
     userEvent.click(correctAnswer)
     const btnNext = screen.getByRole('button', { name: /next/i})
     userEvent.click(btnNext)
-    const score = await screen.findByTestId('header-score')
-    expect(score).toHaveTextContent('70')  
+    const score = await screen.findByText('Score: 70')
+    expect(score).toBeInTheDocument()
   })
 
   it('timer is 29 after one second', async () => {

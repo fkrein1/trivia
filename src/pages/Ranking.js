@@ -19,22 +19,11 @@ class Ranking extends React.Component {
     }
   }
 
-  homeClick = () => {
-    const { history } = this.props;
-    history.push('/');
-  };
-
   render() {
     const { ranking } = this.state;
     return (
       <div>
         <h1>Ranking</h1>
-        <button
-          type="button"
-          onClick={ this.homeClick }
-        >
-          Home
-        </button>
         <div />
         <div>
           {ranking.map(({ name, score }, index) => (
