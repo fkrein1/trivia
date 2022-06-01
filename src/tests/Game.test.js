@@ -26,7 +26,7 @@ describe('Tests Game Page:', () => {
     const firstQuestion = await screen.findByText(/What is the name of the capital of Turkey/i)
     const correctAnswer = screen.getByText(/ankara/i)
     const incorrectAnswer = screen.getByText(/Istanbul/i)
-    const timer = screen.getByText(/30/i)
+    const timer = screen.getByText(/10/i)
 
     expect(firstQuestion).toBeInTheDocument();
     expect(correctAnswer).toBeInTheDocument();
@@ -110,11 +110,11 @@ describe('Tests Game Page:', () => {
     userEvent.click(correctAnswer)
     const btnNext = screen.getByRole('button', { name: /next/i})
     userEvent.click(btnNext)
-    const score = await screen.findByText('Score: 70')
+    const score = await screen.findByText('Score: 30')
     expect(score).toBeInTheDocument()
   })
 
-  it('timer is 29 after one second', async () => {
+  it('timer is 9 after one second', async () => {
     localStorage.setItem('token', 'correctToken')
     jest.useFakeTimers();
     jest.spyOn(global, 'fetch').mockResolvedValue({
@@ -124,12 +124,12 @@ describe('Tests Game Page:', () => {
     
     const firstQuestion = await screen.findByText(/What is the name of the capital of Turkey/i)    
     jest.advanceTimersByTime(1000);
-    const timer = screen.getByText(/29/i);
+    const timer = screen.getByText(/9/i);
     expect(firstQuestion).toBeInTheDocument();
     expect(timer).toBeInTheDocument();
   });
 
-  it('next button is on screen after 40 seconds', async () => {
+  it('next button is on screen after 11 seconds', async () => {
     localStorage.setItem('token', 'correctToken')
     jest.useFakeTimers();
     jest.spyOn(global, 'fetch').mockResolvedValue({
@@ -138,7 +138,7 @@ describe('Tests Game Page:', () => {
     renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
     
     const firstQuestion = await screen.findByText(/What is the name of the capital of Turkey/i)    
-    jest.advanceTimersByTime(30000);
+    jest.advanceTimersByTime(11000);
     const btnNext = screen.getByRole('button', { name: /next/i})
     expect(btnNext).toBeInTheDocument();
   });
