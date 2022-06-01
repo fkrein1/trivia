@@ -160,7 +160,7 @@ class Game extends React.Component {
     }
   }
 
-  nextClick = () => {
+  nextClick = async () => {
     const { currentQuestion } = this.state
     const { history } = this.props
     const finalQuestion = 4
@@ -168,7 +168,7 @@ class Game extends React.Component {
       this.rankingSetup()
       history.push('/feedback')
     } else {
-      this.setState(prevState => ({
+      await this.setState(prevState => ({
         currentQuestion: prevState.currentQuestion + 1,
         disabledQuestion: false,
         timer: 10
