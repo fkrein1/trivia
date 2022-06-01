@@ -10,7 +10,7 @@ class Game extends React.Component {
       trivia: [],
       currentQuestion: 0,
       disabledQuestion: false,
-      timer: 30,
+      timer: 10,
       correctAnswersIndex: [],
       allAnswers: [],
       setIntervalId: 0
@@ -171,7 +171,7 @@ class Game extends React.Component {
       this.setState(prevState => ({
         currentQuestion: prevState.currentQuestion + 1,
         disabledQuestion: false,
-        timer: 30
+        timer: 10
       }))
       this.setTimer()
     }
